@@ -5,14 +5,16 @@
 [![Code Climate](https://codeclimate.com/repos/57f943855cdc43705e00592f/badges/2665cddeba042dc5191f/gpa.svg)](https://codeclimate.com/repos/57f943855cdc43705e00592f/feed)
 [![Test Coverage](https://codeclimate.com/repos/57f943855cdc43705e00592f/badges/2665cddeba042dc5191f/coverage.svg)](https://codeclimate.com/repos/57f943855cdc43705e00592f/coverage)
 [![GitHub license](https://img.shields.io/github/license/MrRio/jsPDF.svg)](https://github.com/MrRio/jsPDF/blob/master/LICENSE)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/MrRio/jsPDF.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrRio/jsPDF/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/MrRio/jsPDF.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrRio/jsPDF/context:javascript)
 
 
 
-**A library to generate PDFs in client-side JavaScript.**
+**A library to generate PDFs in JavaScript.**
 
 You can [catch me on twitter](http://twitter.com/MrRio): [@MrRio](http://twitter.com/MrRio) or head over to [my company's website](http://parall.ax) for consultancy.
 
-## [Live Demo](http://rawgit.com/MrRio/jsPDF/master/) | [Documentation](http://rawgit.com/MrRio/jsPDF/master/docs/)
+## [Live Demo](http://raw.githack.com/MrRio/jsPDF/master/) | [Documentation](http://raw.githack.com/MrRio/jsPDF/master/docs/)
 
 ## Creating your first document
 
@@ -71,7 +73,7 @@ doc.save('two-by-four.pdf')
 
 The 14 standard fonts in PDF are limited to the ASCII-codepage. If you want to use UTF-8 you have to to integrate a custom font, which provides the needed glyphs. jsPDF supports .ttf-files. So if you want to have for example chinese text in your pdf, your font has to have the necessary chinese glyphs. So check if your font supports the wanted glyphs or else it will show a blank space instead of the text.
 
-To add the font to jsPDF use our fontconverter in /fontconver/fontconverter.html . The fontconverter will create a js-file with the content of the provided ttf-file as base64 encoded string and additional code for jsPDF. You just have to add this generated js-File to your project. You are then ready to go to use setFont-method in your code and write your UTF-8 encoded text.
+To add the font to jsPDF use our fontconverter in [/fontconverter/fontconverter.html](https://rawgit.com/MrRio/jsPDF/master/fontconverter/fontconverter.html) . The fontconverter will create a js-file with the content of the provided ttf-file as base64 encoded string and additional code for jsPDF. You just have to add this generated js-File to your project. You are then ready to go to use setFont-method in your code and write your UTF-8 encoded text.
 
 ## Angular/Webpack/React/etc. Configuration:
 
@@ -92,6 +94,28 @@ You can add jsPDF to your meteor-project as follows:
 ```
 meteor add jspdf:core
 ```
+
+## Advanced Functionality
+
+Since the merge with the [yWorks fork](https://github.com/yWorks/jsPDF) there are a lot of new features. However, some
+of them are API breaking, which is why there is an API-switch between two API modes:
+
+ * In "compat" API mode, jsPDF has the same API as MrRio's original version, which means full compatibility with plugins.
+  However, some advanced features like transformation matrices and patterns won't work. This is the default mode.
+ * In "advanced" API mode, jsPDF has the API you're used from the yWorks-fork version. This means the availability of
+  all advanced features like patterns, FormObjects and transformation matrices.
+
+You can switch between the two modes by calling
+```javascript
+doc.advancedAPI(doc => {
+  // your code
+})
+// or
+doc.compatAPI(doc => {
+  // your code
+})
+```
+JsPDF will automatically switch back to the original API mode after the callback has run.
 
 ## Support
 
@@ -120,7 +144,9 @@ Alternatively, you can build jsPDF using these commands in a readily configured 
 - Everyone else that's contributed patches or bug reports. You rock.
 
 ## License (MIT)
-Copyright (c) 2010-2017 James Hall, https://github.com/MrRio/jsPDF
+Copyright
+ (c) 2010-2020 James Hall, https://github.com/MrRio/jsPDF
+ (c) 2015-2018 yWorks GmbH, http://www.yworks.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
